@@ -1,56 +1,50 @@
-<html>
+<html ng-app>
 
 <head>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <script src="app.js"></script>
 </head>
 
-<body>
-    <h5>Hello World!</h5>
+<body ng-app="formApp" ng-controller="mainController">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
 
-    <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                    <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
-                </div>
+            <div class="page-header">
+                <h1>AngularJS Form Validation</h1>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input disabled value="I am not editable" id="disabled" type="text" class="validate">
-                    <label for="disabled">Disabled</label>
+
+            <!-- FORM -->
+            <!-- pass in the variable if our form is valid or invalid -->
+            <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+                <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+                <!-- NAME -->
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" ng-model="name" required>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
+
+                <!-- USERNAME -->
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="email">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12">
-                    This is an inline input field:
-                    <div class="input-field inline">
-                        <input id="email" type="email" class="validate">
-                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+
+                <!-- SUBMIT BUTTON -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
 </body>
 
 </html>
